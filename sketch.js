@@ -1,8 +1,8 @@
 var bat,database,position;
 
 function setup(){
-    createCanvas(400,400);
     database = firebase.database();
+    createCanvas(500,500);
 
     bat = createSprite(200,200,10,10);
     bat.shapeColor = "red";
@@ -12,7 +12,7 @@ function setup(){
 }
 
 function draw(){
-    background(0);
+    background("pink");
 
     if(position !== undefined){
 
@@ -20,20 +20,20 @@ function draw(){
         writePosition(0,-2);
     }
 
-    if(keyDown(DOWN_ARROW)){
+    else if(keyDown(DOWN_ARROW)){
         writePosition(0,2);
     }
 
-    if(keyDown(RIGHT_ARROW)){
+    else if(keyDown(RIGHT_ARROW)){
         writePosition(2,0);
     }
 
-    if(keyDown(LEFT_ARROW)){
+    else if(keyDown(LEFT_ARROW)){
         writePosition(-2,0);
     }
-
     drawSprites();
 }
+
 }
 
 function writePosition(x,y){
@@ -45,6 +45,7 @@ function writePosition(x,y){
 
 function readPosition(data){
     position = data.val();
+    console.log(position.x);
     bat.x = position.x;
     bat.y = position.y;
 }
